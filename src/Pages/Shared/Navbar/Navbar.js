@@ -7,13 +7,13 @@ const Navbar = () => {
 
     const menuItems = (
         <React.Fragment>
-          <li className="font-bold text-cyan-600 ml-3">
+          <li className="font-semibold text-cyan-600 ml-3">
             <Link to="/">Home</Link>
           </li>
-          <li className="font-bold text-cyan-600 ml-3">
+          <li className="font-semibold text-cyan-600 ml-3">
             <Link to="/about">About</Link>
           </li>
-          <li className="font-bold text-cyan-600 ml-3">
+          <li className="font-semibold text-cyan-600 ml-3">
             <Link to="/blog">Blog</Link>
           </li>
     
