@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -8,12 +9,14 @@ const Login = () => {
 
     const {register, formState: { errors }, handleSubmit} = useForm();
 
-    const {signIn} = useContext(AuthContext);
+    const {signIn, googleSignIn} = useContext(AuthContext);
     const [loginError, setLoginError] = useState("");
     const [loginUserEmail, setLoginUserEmail] = useState('');
 
     const location = useLocation();
     const navigate = useNavigate();
+
+    const googleProvider = new GoogleAuthProvider();
   
     const from = location.state?.from?.pathname || "/";
 
@@ -34,6 +37,21 @@ const Login = () => {
             setLoginError(error.message);
           });
       };
+
+      const handleGoogleSignIn = () => {
+        googleSignIn(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+                toast.success('Login Successful', {
+                    position: "top-right"
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 
 
   return (
@@ -87,21 +105,21 @@ const Login = () => {
             {loginError && <p className="text-red-600">{loginError}</p>}
           </div>
           <input
-            className="btn btn-accent w-full"
+            className="btn btn-accent w-full font-semibold text-white text-lg"
             value="Login"
             type="submit"
           />
         </form>
         <p className="mt-1 text-center">
-          <small>
-            New to Doctors Portal{" "}
+          <small className="font-bold">
+            New to Car Cruise BD {" "}
             <Link className="text-secondary font-bold" to="/signup">
               Create new Account
             </Link>
           </small>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full">CONTINUE WITH GOOGLE</button>
+        <button onClick={handleGoogleSignIn} className="btn btn-outline w-full">CONTINUE WITH GOOGLE</button>
       </div>
     </div>
   );

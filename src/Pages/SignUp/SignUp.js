@@ -122,7 +122,7 @@ const SignUp = () => {
             )}
           </div>
           <input
-            className="btn btn-accent w-full"
+            className="btn btn-accent w-full font-semibold text-white text-lg"
             value="Sign Up"
             type="submit"
           />
@@ -131,15 +131,14 @@ const SignUp = () => {
           </div>
         </form>
         <p className="mt-1 text-center">
-          <small>
+          <small className="font-bold">
             Already Have an Account?{" "}
             <Link className="text-secondary font-bold" to="/login">
               PLease Login
             </Link>
           </small>
         </p>
-        <div className="divider">OR</div>
-        <button className="btn btn-outline w-full">CONTINUE WITH GOOGLE</button>
+
       </div>
     </div>
 

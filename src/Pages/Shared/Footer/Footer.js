@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../../assets/logowithoutbg.png';
+import logo from '../../../assets/footer.png';
 
 const Footer = () => {
   return (
@@ -9,30 +9,28 @@ const Footer = () => {
         <div>
           <span className="footer-title">Services</span>
           <Link className="link link-hover">Branding</Link>
-          <Link className="link link-hover">Design</Link>
-          <Link className="link link-hover">Marketing</Link>
           <Link className="link link-hover">Advertisement</Link>
+          <Link className="link link-hover">Marketing</Link>
         </div>
         <div>
           <span className="footer-title">Company</span>
           <Link className="link link-hover">About us</Link>
           <Link className="link link-hover">Contact</Link>
           <Link className="link link-hover">Jobs</Link>
-          <Link className="link link-hover">Press kit</Link>
         </div>
         <div>
           <span className="footer-title">Legal</span>
-          <Link className="link link-hover">Terms of use</Link>
-          <Link className="link link-hover">Privacy policy</Link>
-          <Link className="link link-hover">Cookie policy</Link>
+          <Link className="link link-hover">Terms of Use</Link>
+          <Link className="link link-hover">Privacy Policy</Link>
+          <Link className="link link-hover">Cookie Policy</Link>
         </div>
       </footer>
       <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
         <div className="items-center grid-flow-col">
           <img src={logo} alt="" />
-          <p>
-            ACME Industries Ltd. <br />
-            Providing reliable tech since 1992
+          <p className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
+            Car Cruise BD <br />
+            Providing reliable Best <br /> Car Portal For Sale
           </p>
         </div>
         <div className="md:place-self-center md:justify-self-end">

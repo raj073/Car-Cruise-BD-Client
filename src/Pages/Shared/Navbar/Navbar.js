@@ -38,7 +38,7 @@ const Navbar = () => {
           </li>
           <li className="font-semibold">
             <button
-              className="btn bg-white border-0 hover:bg-white text-gray-500"
+              className="btn bg-white border-none hover:bg-white text-purple-600"
               title={user?.displayName}
             >
               {" "}
