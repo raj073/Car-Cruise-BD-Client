@@ -1,18 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../../../assets/logo.png';
 
 const Navbar = () => {
 
 
     const menuItems = (
         <React.Fragment>
-          <li>
+          <li className="font-bold text-cyan-600 ml-3">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="font-bold text-cyan-600 ml-3">
             <Link to="/about">About</Link>
           </li>
-          <li>
+          <li className="font-bold text-cyan-600 ml-3">
             <Link to="/blog">Blog</Link>
           </li>
     
@@ -45,7 +46,11 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl">Car Cruise BD</Link>
+        {/* <div className="flex"> */}
+            <img className='w-24 h-16' src={logo} alt="" />
+            <Link className="btn btn-ghost normal-case text-xl">Car Cruise BD</Link>
+        {/* </div> */}
+        
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
