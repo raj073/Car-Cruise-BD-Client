@@ -7,13 +7,13 @@ const Navbar = () => {
 
     const menuItems = (
         <React.Fragment>
-          <li className="font-semibold text-cyan-600 ml-3">
+          <li className="font-semibold ml-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
             <Link to="/">Home</Link>
           </li>
-          <li className="font-semibold text-cyan-600 ml-3">
+          <li className="font-semibold ml-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
             <Link to="/about">About</Link>
           </li>
-          <li className="font-semibold text-cyan-600 ml-3">
+          <li className="font-semibold ml-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
             <Link to="/blog">Blog</Link>
           </li>
     
@@ -48,7 +48,7 @@ const Navbar = () => {
         </div>
         {/* <div className="flex"> */}
             <img className='w-24 h-16' src={logo} alt="" />
-            <Link className="btn btn-ghost normal-case text-xl">Car Cruise BD</Link>
+            <Link className="btn btn-ghost normal-case text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">Car Cruise BD</Link>
         {/* </div> */}
         
       </div>

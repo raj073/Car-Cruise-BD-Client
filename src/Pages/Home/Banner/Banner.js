@@ -3,7 +3,7 @@ import banner from '../../../assets/banner.jpg';
 
 const Banner = () => {
   return (
-    <section className="my-10">
+    <section>
       <div className="hero rounded-lg">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
