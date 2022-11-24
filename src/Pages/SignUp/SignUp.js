@@ -23,6 +23,7 @@ const SignUp = () => {
     
             const userInfo = {
               displayName: data.name,
+              photoURL:data.photo
             };
             console.log(userInfo)
             updateUser(userInfo)
@@ -63,6 +64,22 @@ const SignUp = () => {
             />
             {errors.name && (
               <p className="text-red-600">{errors.name?.message}</p>
+            )}
+          </div>
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              {" "}
+              <span className="label-text">Photo URL</span>
+            </label>
+            <input
+              type="text"
+              {...register("photo", {
+                required: "Photo URL is required",
+              })}
+              className="input input-bordered w-full max-w-xs"
+            />
+            {errors.photo && (
+              <p className="text-red-600">{errors.photo?.message}</p>
             )}
           </div>
 
