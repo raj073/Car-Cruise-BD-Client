@@ -11,10 +11,10 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li className="font-semibold ml-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
-            <Link to="/about">About</Link>
+            <Link to="/blog">Blog</Link>
           </li>
           <li className="font-semibold ml-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
-            <Link to="/blog">Blog</Link>
+            <Link to="/login">Login</Link>
           </li>
     
         </React.Fragment>
