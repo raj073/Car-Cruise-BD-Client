@@ -13,7 +13,7 @@ const Navbar = () => {
             <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/">Contact Us</Link>
+            <Link to="/blog">Blog</Link>
           </li>
     
         </React.Fragment>
@@ -21,7 +21,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 shadow-xl rounded-md mb-7">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -53,7 +53,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Get started</a>
+        <button className="btn border-none bg-gradient-to-r from-sky-500 to-indigo-500"> Advertise </button>
       </div>
     </div>
   );
