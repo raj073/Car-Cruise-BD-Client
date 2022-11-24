@@ -19,14 +19,14 @@ const Banner = () => {
             <div className="text-3xl py-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
             An Elegant Car that Suits Your Alluring Personality.
             </div>
-            <p className="py-4 text-lg">
+            <div className="py-4 text-lg">
               Get Your Affordable and most Like Cars From Our Portal.
               You can also list your car on Car Cruise BD portal to sell at the best price. 
               Listing an old car on our portal is absolutely free. <br />
               <div className="font-bold text-xl mt-4">
               Only we can provide all the necessities and luxuries within our means.
               </div>
-            </p>
+            </div>
             <button className="btn border-none bg-gradient-to-r from-sky-500 to-indigo-500 text-white rounded-none">
               Book Your Car
             </button>
