@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Loading from "../../Shared/Loading/Loading";
 import CarCategory from "../CarCategory/CarCategory";
 
 const CarCategories = () => {
-  const [carCategories, setCarCategories] = useState();
-  const [loadingServices, setLoadingServices] = useState(true);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/categories")
-      .then((res) => res.json())
-      .then((data) => {
-        setCarCategories(data);
-        setLoadingServices(false);
-      });
+  const { data: carCategories = [], isLoading } = useQuery({
+    queryKey: ["carCategories"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/categories");
+      const data = await res.json();
+      return data;
+    },
   });
+
+  if (isLoading) {
+    return <Loading></Loading> ;
+  }
 
   return (
     <div>
-      <div>{loadingServices && <Loading></Loading>}</div>
 
       <div className="text-center mb-5 mt-12">
         <h3 className="text-5xl font-semibold text-transparent bg-clip-text 
