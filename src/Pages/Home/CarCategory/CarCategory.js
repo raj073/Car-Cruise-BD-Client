@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CarCategory = ({category}) => {
 
-const {name, image, details} = category;
+const {_id, name, image, details} = category;
 
   return (
 
@@ -16,8 +17,10 @@ const {name, image, details} = category;
         <h2 className="card-title">{name}</h2>
         <p>{details}</p>
         <div className="card-actions">
+          <Link to={`category/${_id}`}>
           <button className="btn border-none bg-gradient-to-r from-sky-500 to-indigo-500 text-white 
           rounded-none">View Product</button>
+          </Link>
         </div>
       </div>
     </div>

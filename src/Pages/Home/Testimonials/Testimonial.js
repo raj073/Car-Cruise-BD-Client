@@ -6,7 +6,7 @@ const Testimonial = ({ rating }) => {
   const { name, img, review, designation } = rating;
 
   return (
-    <div className="card bg-base-100 shadow-xl">
+    <div className="card bg-base-100 shadow-xl transform transition duration-500 hover:scale-110">
       <figure className="px-10 pt-10">
         <img className="w-24 h-16" src={quote} alt="Shoes" />
       </figure>

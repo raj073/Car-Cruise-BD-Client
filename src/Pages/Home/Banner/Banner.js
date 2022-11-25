@@ -12,7 +12,7 @@ const Banner = () => {
             alt=""
           />
           <div>
-            <span className="text-5xl font-bold text-transparent text-6xl bg-clip-text 
+            <span className="text-5xl font-bold text-transparent bg-clip-text 
             bg-gradient-to-r from-sky-500 to-indigo-500">
             Best Car For Sale
             </span> <br />
