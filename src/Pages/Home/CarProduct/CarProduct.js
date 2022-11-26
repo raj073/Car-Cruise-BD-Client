@@ -1,9 +1,7 @@
 import React from "react";
-import { FaLocationArrow } from "react-icons/fa";
 
-const CarProduct = ({ carProduct }) => {
+const CarProduct = ({ carProduct, setProduct }) => {
   const {
-    categoryName,
     productName,
     location,
     resalePrice,
@@ -40,9 +38,11 @@ const CarProduct = ({ carProduct }) => {
     </p>
     <hr />
     <p className="italic font-serif">Seller Name: {sellerName}</p>
+
     <div className="card-actions justify-end">
-    <button className="btn border-none bg-gradient-to-r from-sky-500 to-indigo-500 text-white 
-          rounded-none">Book Now</button>
+          <label htmlFor="book-now-modal" onClick={() => setProduct(carProduct)}
+          className="btn border-none bg-gradient-to-r from-sky-500 to-indigo-500 text-white 
+          rounded-none">Book Now</label>
     </div>
   </div>
 </div>
