@@ -30,6 +30,9 @@ const Navbar = () => {
       <li className="font-semibold ml-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
         <Link to="/blog">Blog</Link>
       </li>
+      <li className="font-semibold ml-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
+        <Link to="/addProduct">Add A Product</Link>
+      </li>
 
       {user?.email ? (
         <>
