@@ -24,7 +24,7 @@ const SignUp = () => {
       role: data.role
     }
     console.log(usersInfo);
-    
+
     setSignUpError("");
     createUser(data.email, data.password)
       .then((result) => {
@@ -142,6 +142,7 @@ const SignUp = () => {
               <p className="text-red-600 mb-1">{errors.password?.message}</p>
             )}
           </div>
+          
           <div className="form-control w-full max-w-xs mb-5">
             <label className="label">
               {" "}
