@@ -11,6 +11,7 @@ import AddProduct from "../../Pages/AddProduct/AddProduct";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import MyBookings from "../../Pages/Dashboard/MyBookings/MyBookings";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
+import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 
 
 const router = createBrowserRouter([
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addProduct',
                 element: <AddProduct></AddProduct>
+                
+            },
+            {
+                path: '/dashboard/myorders',
+                element: <MyOrders></MyOrders>
                 
             }
         ]
