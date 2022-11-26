@@ -37,6 +37,9 @@ const Navbar = () => {
       {user?.email ? (
         <>
           <li className="font-semibold ml-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li className="font-semibold ml-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
           <button onClick={handleLogOut}>Sign Out</button>
           </li>
           <li className="font-semibold">

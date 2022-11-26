@@ -9,6 +9,7 @@ import CarProducts from "../../Pages/Home/CarProducts/CarProducts";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddProduct from "../../Pages/AddProduct/AddProduct";
 import DashboardLayout from "../../Layout/DashboardLayout";
+import MyBookings from "../../Pages/Dashboard/MyBookings/MyBookings";
 
 
 const router = createBrowserRouter([
@@ -53,7 +54,8 @@ const router = createBrowserRouter([
         errorElement: <DisplayError></DisplayError>,
         children: [
             {
-                path: '/dashboard'
+                path: '/dashboard',
+                element: <MyBookings></MyBookings>
             }
         ]
     }
