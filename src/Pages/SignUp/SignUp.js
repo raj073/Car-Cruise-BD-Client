@@ -1,50 +1,72 @@
-import React, { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Contexts/AuthProvider';
+import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthProvider";
 
 const SignUp = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
-    const {register, formState: { errors }, handleSubmit} = useForm();
+  const { createUser, updateUser } = useContext(AuthContext);
+  const [signUpError, setSignUpError] = useState("");
+  const navigate = useNavigate();
 
-    const { createUser, updateUser } = useContext(AuthContext);
-    const [signUpError, setSignUpError] = useState("");
-    const navigate = useNavigate();
+  const handleSignUp = (data) => {
 
-
-    const handleSignUp = (data) => {
-        setSignUpError("");
-        createUser(data.email, data.password)
-          .then((result) => {
-            const user = result.user;
-            console.log(user);
-            toast.success("User Created Successfully.");
+    const usersInfo = {
+      name: data.name,
+      email: data.email,
+      photo: data.photo,
+      role: data.role
+    }
+    console.log(usersInfo);
     
-            const userInfo = {
-              displayName: data.name,
-              photoURL:data.photo
-            };
-            console.log(userInfo)
-            updateUser(userInfo)
-              .then(() => {
-                //saveUser(data.name, data.email);
-                navigate('/');
-              })
-              .catch((err) => console.log(err));
+    setSignUpError("");
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("User Created Successfully.");
+
+        const userInfo = {
+          displayName: data.name,
+          photoURL: data.photo,
+        };
+        console.log(userInfo);
+        updateUser(userInfo)
+          .then(() => {
+            //saveUser(data.name, data.email);
+            navigate("/");
           })
-          .catch((error) => {
-            console.log(error.message);
-            toast.error(error.message);
-            setSignUpError(error.message);
-          });
-      };
+          .catch((err) => console.log(err));
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(error.message);
+        setSignUpError(error.message);
+      });
 
 
-    return (
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers:{
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(usersInfo)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);  
+    })
 
+  };
 
-        <div className="h-[500px] flex justify-center items-center mb-16">
+  return (
+    <div className="h-[550px] flex justify-center items-center my-16">
       <div className="w-96 p-7 shadow-2xl rounded-md">
         <h2 className="text-xl text-center font-bold text-secondary uppercase">
           Sign Up
@@ -116,11 +138,29 @@ const SignUp = () => {
               })}
               className="input input-bordered w-full max-w-xs"
             />
-            <br />
             {errors.password && (
               <p className="text-red-600 mb-1">{errors.password?.message}</p>
             )}
           </div>
+          <div className="form-control w-full max-w-xs mb-5">
+            <label className="label">
+              {" "}
+              <span className="label-text">User Role</span>
+            </label>
+            <select
+              {...register("role", {
+                required: "User Role is Required",
+              })}
+              className="select select-bordered select-sm w-full max-w-xs"
+            >
+              <option disabled selected>
+                Select User Role
+              </option>
+              <option>Buyer</option>
+              <option>Seller</option>
+            </select>
+          </div>
+
           <input
             className="btn btn-accent w-full font-semibold text-white text-lg"
             value="Sign Up"
@@ -138,12 +178,9 @@ const SignUp = () => {
             </Link>
           </small>
         </p>
-
       </div>
     </div>
-
-
-    );
+  );
 };
 
 export default SignUp;

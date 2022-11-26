@@ -8,6 +8,7 @@ import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 import CarProducts from "../../Pages/Home/CarProducts/CarProducts";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddProduct from "../../Pages/AddProduct/AddProduct";
+import DashboardLayout from "../../Layout/DashboardLayout";
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,16 @@ const router = createBrowserRouter([
                 path: '/addProduct',
                 element: <AddProduct></AddProduct>
                 
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <DisplayError></DisplayError>,
+        children: [
+            {
+                path: '/dashboard'
             }
         ]
     }
