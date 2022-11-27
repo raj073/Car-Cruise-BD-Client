@@ -10,14 +10,20 @@ import Loading from "../Shared/Loading/Loading";
 
 const AddProduct = () => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
-  const {user} = useContext(AuthContext);
+  const { register, handleSubmit, formState: { errors } } = useForm(
+    {
+      defaultValues: {
+          category: '',
+          condition: ''
+      }
+  }
+  );
+  
+  const {user, loading} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const imageHostKey = process.env.REACT_APP_imgbb;
-  console.log(imageHostKey);
 
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
@@ -27,6 +33,15 @@ const AddProduct = () => {
         return data;
     }
 })
+const categoryObject = {};
+
+const getCategoryObject = () => {
+  categories?.forEach(category => {
+      categoryObject[category.name] = category._id;
+  })
+}
+
+getCategoryObject();
 
     const handleAddProduct = (data) => {
       const image = data.image[0];
@@ -41,21 +56,24 @@ const AddProduct = () => {
       .then(imgData =>{
           console.log(imgData);
           if(imgData.success){
-            const addProduct = {
+            const product = {
+              categoryId: categoryObject[data.category],
               productName: data.name,
               categoryName: data.category, 
-              description: data.description,
               condition: data.condition,
+              description: data.description,
               originalPrice: data.originalPrice,
               resalePrice: data.resalePrice,
               yearsOfUse: data.yearOfPurchase,
               mobile: data.mobile,
               location: data.location,
-              sellerName: data.seller,
+              sellerName: user?.displayName,
               sellerEmail: user.email,
-              image: imgData.data.url
+              image: imgData.data.url,
+              salesStatus:'available',
+              postingTime: new Date()
           }
-      console.log(addProduct);
+      console.log(product);
 
               // Save doctor information to the database
               fetch('http://localhost:5000/addProducts',{
@@ -63,7 +81,7 @@ const AddProduct = () => {
                   headers:{
                       'content-type': 'application/json',
                   },
-                  body:JSON.stringify(addProduct)
+                  body:JSON.stringify(product)
               })
               .then(res => res.json())
               .then(result => {
@@ -78,7 +96,7 @@ const AddProduct = () => {
       
   }
 
-      if(isLoading){
+      if(isLoading || loading){
         return <Loading></Loading>
     }
 
@@ -108,17 +126,18 @@ const AddProduct = () => {
 
         <div className="form-control">
         <label className="text-gray-600 font-medium block mt-2 font-serif mb-3">Product Category</label>
-        <select {...register('category')}
+        <select {...register('category', {
+            required: "Category is Required"
+        })}
         className="select select-bordered border-solid border-gray-300 border py-2 px-4 w-full 
         rounded text-gray-700">
-          {
-            categories.map(category => <option
-            key={category._id}
-            value={category.categoryId}
-            >
-              {category.name}
-            </option>)
-          }
+           <option disabled value="">Select Category</option>
+           {
+            Object.keys(categoryObject)?.map((category, index) => <option
+            key={index}
+            value={category}>
+            {category}</option>)
+           }
         </select>
         {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
         </div>
@@ -138,9 +157,12 @@ const AddProduct = () => {
         <div className="form-control">
         <label className="text-gray-600 font-medium block mt-2 font-serif mb-3">Condition</label>
         <select
-        {...register('condition')}
+        {...register('condition', {
+          required: "Condition is Required"
+      })}
         className="select select-bordered border-solid border-gray-300 border py-2 px-4 w-full 
         rounded text-gray-700">
+        <option disabled value="">Select Condition</option>
         <option value="Excellent">Excellent</option>
         <option value="Good">Good</option>
         <option value="Fair">Fair</option>
@@ -206,17 +228,6 @@ const AddProduct = () => {
           placeholder="Location"
         />
         {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
-        </div>
-        <div className="form-control">
-        <label className="text-gray-600 font-medium block mt-2 font-serif mb-3">Seller Name</label>
-        <input
-          className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700"
-          type="text" {...register("seller", {
-            required: "Seller Name is Required"
-        })}
-          placeholder="Seller Name"
-        />
-        {errors.seller && <p className='text-red-500'>{errors.seller.message}</p>}
         </div>
 
         <div className="form-control">
