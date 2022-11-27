@@ -6,8 +6,7 @@ import { AuthContext } from "../../../Contexts/AuthProvider";
 const BookNowModal = ({product, setProduct}) => {
 
     const {user} = useContext(AuthContext);
-
-    const {productName, resalePrice} = product;
+    const {_id, productName, resalePrice} = product;
 
     const handleBookNow = (event) =>{
 
@@ -22,7 +21,7 @@ const BookNowModal = ({product, setProduct}) => {
       const location = form.location.value;
 
       const bookings = {
-        name, email, productName, price, phone, location 
+        name, email, productName, price, phone, location, productId:_id 
       }
 
       fetch('http://localhost:5000/bookings', {
@@ -60,8 +59,9 @@ const BookNowModal = ({product, setProduct}) => {
           >
             ✕
           </label>
+          
           <h3 className="text-2xl font-serif font-semibold text-transparent bg-clip-text 
-            bg-gradient-to-r from-sky-500 to-indigo-500">Book: {productName}</h3>
+            bg-gradient-to-r from-sky-500 to-indigo-500">{productName}</h3>
 
           <form onSubmit={handleBookNow} className="grid grid-cols-1 gap-3 mt-10">
 

@@ -27,7 +27,7 @@ const DashboardLayout = () => {
 
         <div className="drawer-side shadow-lg">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-3 w-80 bg-base-100 text-base-content items-center rounded-none">
+          <ul className="menu p-3 w-80 bg-base-100 text-base-content items-center">
   
             {
                 isAdmin && (
@@ -42,10 +42,18 @@ const DashboardLayout = () => {
             {
                 isSeller && (
                     <>
-                    <Link to="/dashboard/addProduct" className="font-semibold ml-3 text-transparent bg-clip-text 
+                    <li className="font-semibold ml-3 text-transparent bg-clip-text 
                     bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <Link to="/dashboard/addProduct">
                         Add A Product
                     </Link>
+                    </li>
+                    <li className="font-semibold ml-3 text-transparent bg-clip-text 
+                    bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <Link to="/dashboard/myproducts">
+                        My Products
+                    </Link>
+                    </li>
                     </>
                 )
             }

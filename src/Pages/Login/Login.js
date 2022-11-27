@@ -29,11 +29,13 @@ const Login = () => {
             navigate(from, {replace: true});
             toast.success("User Logged In Successful");
             setLoginUserEmail(data.email);
-            
+            console.log(loginUserEmail);
           })
           .catch((error) => {
             console.log(error.message);
-            toast.error("User Logged In Failed");
+            toast.error("User Logged In Failed", {
+              position: "top-right"
+            });
             setLoginError(error.message);
           });
       };
@@ -47,11 +49,32 @@ const Login = () => {
                 toast.success('Login Successful', {
                     position: "top-right"
                 });
+                saveUser(user.displayName, user.email, user.photoURL);
             })
             .catch(error => {
                 console.error(error);
             })
     }
+
+    const saveUser = (name, email, photo) => {
+      const users = { 
+        name, 
+        email, 
+        photo,
+        role: 'Buyer' };
+
+      fetch('http://localhost:5000/users', {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(users)
+      })
+          .then(res => res.json())
+          .then(data => {
+              
+          })
+  }
 
 
   return (

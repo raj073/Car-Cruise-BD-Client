@@ -38,7 +38,7 @@ const AddProduct = () => {
 
   return (
     <React.Fragment>
-      <h1 className="text-center text-4xl font-semibold mt-10 font-serif text-transparent bg-clip-text 
+      <h1 className="text-center text-4xl font-semibold mt-5 font-serif text-transparent bg-clip-text 
             bg-gradient-to-r from-sky-500 to-indigo-500">Please Add a Product to Explore</h1>
       <div className="divider"></div>
       <form
