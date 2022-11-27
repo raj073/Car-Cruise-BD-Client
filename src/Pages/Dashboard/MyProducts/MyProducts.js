@@ -22,32 +22,46 @@ const MyProducts = () => {
 
   return (
     <div>
-      <h1>This is my product</h1>
-      <p>Total Data is: {myProducts?.length}</p>
+      <h1 className="text-center text-4xl font-semibold mt-5 font-serif text-transparent bg-clip-text 
+            bg-gradient-to-r from-sky-500 to-indigo-500">Total Products: {myProducts?.length}</h1>
+      <div className="divider"></div>
       <div className="overflow-x-auto">
-        <table className="table w-full">
+      <table className="table table-zebra w-full">
           <thead>
             <tr>
               <th></th>
-              <th>Product Name</th>
+              <th>Avatar</th>
+              <th>Name</th>
               <th>Category</th>
-              <th>Picture</th>
+              <th>Resale Price</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {
-              // myProducts.map((user, i) => <tr key={user._id}>
-              //     <th>{i + 1}</th>
-              //     <td>{user.name}</td>
-              //     <td>{user.email}</td>
-              //     <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} 
-              //className='btn btn-xs btn-primary'>Make Admin</button>}</td>
-              //     <td><button className='btn btn-xs btn-danger'>Delete</button></td>
-              // </tr>)
-            }
+            {myProducts.map((product, i) => (
+              <tr key={product._id}>
+                <th>{i + 1}</th>
+                <td>
+                  <div className="avatar">
+                    <div className="w-16 rounded-full">
+                      <img src={product.image} alt="" />
+                    </div>
+                  </div>
+                </td>
+                <td>{product.productName}</td>
+                <td>{product.categoryName}</td>
+                <td>{product.resalePrice}</td>
+                <td>{product.salesStatus}</td>
+                <td>
+                <label className="btn btn-xs btn-error">Delete</label> &nbsp;&nbsp;
+                <label className="btn btn-outline btn-xs btn-warning">Make Advertise</label>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
+
       </div>
     </div>
   );

@@ -198,7 +198,7 @@ getCategoryObject();
         <label className="text-gray-600 font-medium block mt-2 font-serif mb-3">Year of Purchase</label>
         <input
           className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700"
-          type="text" {...register("yearsOfPurchase", {
+          type="text" {...register("yearOfPurchase", {
             required: "Year of Purchase is Required"
         })}
           placeholder="Year of Purchase"
