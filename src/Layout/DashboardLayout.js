@@ -43,6 +43,10 @@ const DashboardLayout = () => {
                     bg-gradient-to-r from-cyan-500 to-blue-500">
                     <Link to="/dashboard/allseller">All Sellers</Link>
                     </li>
+                    <li className="font-semibold ml-3 text-transparent bg-clip-text 
+                    bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <Link to="/dashboard/allbuyer">All Buyers</Link>
+                    </li>
                     </>
                 )
             }
