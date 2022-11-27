@@ -32,7 +32,7 @@ const DashboardLayout = () => {
 
         <div className="drawer-side shadow-lg">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-3 w-80 bg-base-100 text-base-content items-center">
+          <ul className="menu p-3 w-80 text-base-content items-center">
   
             {
                 isAdmin && (

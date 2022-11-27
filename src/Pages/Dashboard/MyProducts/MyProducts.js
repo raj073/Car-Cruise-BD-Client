@@ -1,11 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import Loading from "../../Shared/Loading/Loading";
 
 const MyProducts = () => {
   const { user, loading } = useContext(AuthContext);
-  const {data: myProducts, isLoading} = useQuery({
+  const [deletingProduct, setDeletingProduct] = useState(null);
+
+  const closeModal = () => {
+    setDeletingProduct(null);
+}
+
+  const {data: myProducts, isLoading, refetch} = useQuery({
     queryKey: ["myProducts"],
     queryFn: async () => {
       const res = await fetch(
@@ -15,6 +23,22 @@ const MyProducts = () => {
       return data;
     },
   });
+
+  const handleDeleteProduct = (product) => {
+    fetch(`http://localhost:5000/products/${product._id}`, {
+        method: 'DELETE', 
+        // headers: {
+        //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+        // }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.deletedCount > 0){
+            refetch();
+            toast.success(`Product ${product.productName} Deleted Successfully`)
+        }
+    })
+}
 
   if (isLoading || loading) {
     return <Loading></Loading>;
@@ -54,7 +78,8 @@ const MyProducts = () => {
                 <td>{product.resalePrice}</td>
                 <td>{product.salesStatus}</td>
                 <td>
-                <label className="btn btn-xs btn-error">Delete</label> &nbsp;&nbsp;
+                <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">
+                  Delete</label> &nbsp;&nbsp;
                 <label className="btn btn-outline btn-xs btn-warning">Make Advertise</label>
                 </td>
               </tr>
@@ -63,6 +88,25 @@ const MyProducts = () => {
         </table>
 
       </div>
+
+
+      {
+        deletingProduct &&
+        <ConfirmationModal
+                    title={`Are You Sure You Want to Delete?`}
+                    message={`If you Delete ${deletingProduct.productName} It Cannot be Undone.`}
+                    successAction = {handleDeleteProduct}
+                    successButtonName="Delete"
+                    modalData = {deletingProduct}
+                    closeModal = {closeModal}
+        >
+
+        </ConfirmationModal>
+      }
+
+
+
+
     </div>
   );
 };
