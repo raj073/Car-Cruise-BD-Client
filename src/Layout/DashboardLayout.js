@@ -10,19 +10,21 @@ import Navbar from "../Pages/Shared/Navbar/Navbar";
 const DashboardLayout = () => {
 
     const { user, loading } = useContext(AuthContext);
-    const [isAdmin] = useAdmin(user?.email);
-    const [isSeller] = useSeller(user?.email);
-    const [isBuyer] = useBuyer(user?.email);
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+    const [isSeller, isSellerLoading] = useSeller(user?.email);
+    const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
 
-    if(loading){
-        <Loading></Loading>
-    }
+  
 
   return (
     <div>
       <Navbar></Navbar>
-      
 
+      {
+        (loading || isAdminLoading || isSellerLoading || isBuyerLoading) &&
+        <Loading></Loading>
+      }
+      
       <div className="drawer drawer-mobile">
         <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
         
@@ -37,8 +39,9 @@ const DashboardLayout = () => {
             {
                 isAdmin && (
                     <>
-                    <li>
-                    <Link to="/dashboard/allusers">All users</Link>
+                    <li className="font-semibold ml-3 text-transparent bg-clip-text 
+                    bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <Link to="/dashboard/allseller">All Sellers</Link>
                     </li>
                     </>
                 )

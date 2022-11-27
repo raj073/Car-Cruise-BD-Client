@@ -110,7 +110,8 @@ getCategoryObject();
         className="max-w-xl m-auto py-10 my-12 px-12 border shadow-md"
         onSubmit={handleSubmit(handleAddProduct)}
       > 
-
+      <h1 className="text-center text-4xl font-semibold font-serif text-transparent bg-clip-text 
+            bg-gradient-to-r from-sky-500 to-indigo-500">Add a Product</h1>
         <div className="form-control">
         <label className="text-gray-600 font-medium block mt-2 font-serif mb-3">Product Name</label>
         <input

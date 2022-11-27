@@ -10,10 +10,11 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddProduct from "../../Pages/AddProduct/AddProduct";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import MyBookings from "../../Pages/Dashboard/MyBookings/MyBookings";
-import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import SellerRoute from "../SellerRoute/SellerRoute";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import AllSeller from "../../Pages/Dashboard/AllSeller/AllSeller";
 
 
 const router = createBrowserRouter([
@@ -51,13 +52,13 @@ const router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement: <DisplayError></DisplayError>,
         children: [
+            // {
+            //     path: '/dashboard',
+            //     element: <MyBookings></MyBookings>
+            // },
             {
-                path: '/dashboard',
-                element: <MyBookings></MyBookings>
-            },
-            {
-                path:'/dashboard/allusers',
-                element: <AllUsers></AllUsers>
+                path:'/dashboard/allseller',
+                element: <AdminRoute><AllSeller></AllSeller></AdminRoute>
             },
             {
                 path: '/dashboard/addProduct',
@@ -66,7 +67,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myproducts',
-                element: <MyProducts></MyProducts>
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
                 
             },
             {

@@ -63,7 +63,7 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {myProducts.map((product, i) => (
+            {myProducts?.map((product, i) => (
               <tr key={product._id}>
                 <th>{i + 1}</th>
                 <td>
@@ -89,7 +89,6 @@ const MyProducts = () => {
 
       </div>
 
-
       {
         deletingProduct &&
         <ConfirmationModal
@@ -103,9 +102,6 @@ const MyProducts = () => {
 
         </ConfirmationModal>
       }
-
-
-
 
     </div>
   );
