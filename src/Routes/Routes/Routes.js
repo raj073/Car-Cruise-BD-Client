@@ -13,6 +13,7 @@ import MyBookings from "../../Pages/Dashboard/MyBookings/MyBookings";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 
 const router = createBrowserRouter([
@@ -28,8 +29,7 @@ const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
-            }
-            ,
+            },
             {
                 path: '/login',
                 element: <Login></Login>
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addProduct',
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
                 
             },
             {

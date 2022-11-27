@@ -27,7 +27,9 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             navigate(from, {replace: true});
-            toast.success("User Logged In Successful");
+            toast.success("User Logged In Successful", {
+              position: "top-right"
+            });
             setLoginUserEmail(data.email);
             console.log(loginUserEmail);
           })

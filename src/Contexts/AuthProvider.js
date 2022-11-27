@@ -5,7 +5,7 @@ signOut, updateProfile} from 'firebase/auth';
 import app from '../firebase/firebase.config';
 
 export const AuthContext= createContext();
-const auth = getAuth(app);
+const auth = getAuth(app)
 
 const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
@@ -18,12 +18,14 @@ const AuthProvider = ({children}) => {
 
   const signIn = (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password)
+    .finally(() => { setLoading(false) });
   };
 
   const googleSignIn = (provider) => {
     setLoading(true);
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, provider)
+    .finally(() => { setLoading(false) });
 }
 
   const updateUser = (userInfo) =>{

@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import Loading from '../../Shared/Loading/Loading';
 
 const MyOrders = () => {
 
-    const {user} = useContext(AuthContext);
+    const {user, loading} = useContext(AuthContext);
 
     const url = `http://localhost:5000/orders?email=${user?.email}`;
 
@@ -16,6 +17,10 @@ const MyOrders = () => {
             return data;
         }
     })
+
+    if(loading){
+        <Loading></Loading>
+    }
 
     return (
 

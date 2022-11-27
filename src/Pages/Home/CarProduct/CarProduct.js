@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React from "react";
 
 const CarProduct = ({ carProduct, setProduct }) => {
@@ -11,6 +12,8 @@ const CarProduct = ({ carProduct, setProduct }) => {
     sellerName,
     image,
   } = carProduct;
+
+  const postingDate = format(Date.parse(postingTime), 'PP');
 
   return (
 
@@ -34,7 +37,7 @@ const CarProduct = ({ carProduct, setProduct }) => {
         Years of Use: {yearsOfUse}
     </p>
     <p className="font-serif">
-        Posted Time: {postingTime}
+        Posted Time: {postingDate}
     </p>
     <hr />
     <p className="italic font-serif">Seller Name: {sellerName}</p>

@@ -68,7 +68,7 @@ getCategoryObject();
               mobile: data.mobile,
               location: data.location,
               sellerName: user?.displayName,
-              sellerEmail: user.email,
+              email: user.email,
               image: imgData.data.url,
               salesStatus:'available',
               postingTime: new Date()
