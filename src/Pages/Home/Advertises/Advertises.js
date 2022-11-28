@@ -12,6 +12,7 @@ const Advertises = () => {
       return data;
     },
   });
+  //console.log(advertises[0].productName);
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -19,7 +20,8 @@ const Advertises = () => {
 
   return (
     <div>
-      <div className="text-center mb-5 mt-12">
+      { advertises[0]?.advertisement &&
+        <div className="text-center mb-5 mt-12">
         <h3
           className="text-5xl font-semibold text-transparent bg-clip-text 
             bg-gradient-to-r from-sky-500 to-indigo-500 mb-2 font-mono"
@@ -28,11 +30,17 @@ const Advertises = () => {
         </h3>
         <div className="divider"></div>
       </div>
+      }
 
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
-        {advertises?.map((advertise) => (
-          <Advertise key={advertise._id} advertise={advertise}></Advertise>
+        
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
+        
+        {   
+            advertises[0]?.advertisement &&
+            advertises?.map((advertise) => (
+                <Advertise key={advertise._id} advertise={advertise}></Advertise>
         ))}
+        
       </div>
     </div>
   );

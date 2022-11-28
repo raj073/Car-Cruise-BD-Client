@@ -42,8 +42,6 @@ const MyProducts = () => {
     })
 }
 
-
-
 const handleMakeAdvertise = (id) => {
   fetch(`http://localhost:5000/product/${id}`, {
       method: 'PUT', 
