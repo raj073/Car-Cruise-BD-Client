@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
@@ -8,7 +8,7 @@ import Loading from "../../Shared/Loading/Loading";
 const MyProducts = () => {
   const { user, loading } = useContext(AuthContext);
   const [deletingProduct, setDeletingProduct] = useState(null);
-  const [isDisabled, setDisabled] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const closeModal = () => {
     setDeletingProduct(null);
@@ -37,7 +37,6 @@ const MyProducts = () => {
         if(data.deletedCount > 0){
             refetch();
             toast.success(`Product ${product.productName} Deleted Successfully`);
-            setDisabled(true);
         }
     })
 }
@@ -52,13 +51,12 @@ const handleMakeAdvertise = (id) => {
   .then(res => res.json())
   .then(data => {
       if(data.modifiedCount > 0){
-          toast.success('Make Advertise successful.');
+          toast.success('Make Advertise Successful.');
           refetch();
       }
   })
+  setDisable(true);
 }
-
-
 
   if (isLoading || loading) {
     return <Loading></Loading>;
@@ -100,8 +98,9 @@ const handleMakeAdvertise = (id) => {
                 <td>
                 <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">
                   Delete</label> &nbsp;&nbsp;
-                <label onClick={() => handleMakeAdvertise(product._id)} disabled={isDisabled} className="btn btn-outline btn-xs btn-warning">
-                  Make Advertise</label>
+                <button disabled={disable} onClick={() => handleMakeAdvertise(product._id)} 
+                className="btn btn-outline btn-xs btn-warning">
+                  Make Advertise</button>
                 </td>
               </tr>
             ))}

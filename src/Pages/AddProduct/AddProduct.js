@@ -62,8 +62,8 @@ getCategoryObject();
               categoryName: data.category, 
               condition: data.condition,
               description: data.description,
-              originalPrice: data.originalPrice,
-              resalePrice: data.resalePrice,
+              originalPrice: parseInt(data.originalPrice),
+              resalePrice: parseInt(data.resalePrice),
               yearsOfUse: data.yearOfPurchase,
               mobile: data.mobile,
               location: data.location,
@@ -175,7 +175,7 @@ getCategoryObject();
         <label className="text-gray-600 font-medium block mt-2 font-serif mb-3">Original Price</label>
         <input
           className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700"
-          type="text" {...register("originalPrice", {
+          type="number" {...register("originalPrice", {
             required: "Original Price is Required"
         })}
           placeholder="Original Price"
@@ -187,7 +187,7 @@ getCategoryObject();
         <label className="text-gray-600 font-medium block mt-2 font-serif mb-3">Resale Price</label>
         <input
           className="border-solid border-gray-300 border py-2 px-4 w-full rounded text-gray-700"
-          type="text" {...register("resalePrice", {
+          type="number" {...register("resalePrice", {
             required: "Resale Price is Required"
         })}
           placeholder="Resale Price"

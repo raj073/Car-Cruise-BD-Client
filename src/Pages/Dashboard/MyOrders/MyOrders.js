@@ -65,9 +65,9 @@ const MyOrders = () => {
                     </Link>
                   )}
 
-                  {/* {order.price && order.paid && (
+                  {order.price && order.paid && (
                     <span className="text-green-500">Paid</span>
-                  )} */}
+                  )}
                   
                 </td>
               </tr>

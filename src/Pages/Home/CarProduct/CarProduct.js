@@ -1,5 +1,7 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../Contexts/AuthProvider";
+import useBuyer from "../../../Hooks/useBuyer";
 
 const CarProduct = ({ carProduct, setProduct }) => {
   const {
@@ -13,6 +15,9 @@ const CarProduct = ({ carProduct, setProduct }) => {
     image,
   } = carProduct;
 
+  const { user, loading } = useContext(AuthContext);
+  const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
+
   const postingDate = format(Date.parse(postingTime), 'PP');
 
   return (
@@ -22,6 +27,15 @@ const CarProduct = ({ carProduct, setProduct }) => {
     <img className="w-96 h-96" src={image} alt="Album"/>
   </figure>
   <div className="card-body w-96">
+  {
+    isBuyer && (
+      <div className="card-actions justify-end">
+          <label
+          className="btn glass btn-sm text-blue-500">Add to Wishlist</label>
+    </div>
+    )
+  }
+  
     <h2 className="card-title text-2xl font-serif font-semibold text-transparent bg-clip-text 
             bg-gradient-to-r from-sky-500 to-indigo-500 mb-2">{productName}</h2>
     <p className="font-serif">

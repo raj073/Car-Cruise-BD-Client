@@ -17,7 +17,7 @@ const BookNowModal = ({product, setProduct}) => {
       const name = form.name.value;
       const email = form.email.value;
       const productName = form.productName.value;
-      const price = form.price.value;
+      const price = parseInt(form.price.value);
       const phone = form.phone.value;
       const location = form.location.value;
 
@@ -77,7 +77,7 @@ const BookNowModal = ({product, setProduct}) => {
             <input name="productName" type="text" disabled defaultValue={productName}
               className="input w-full input-bordered input-info rounded-md"/>
 
-            <input name="price" type="text" disabled defaultValue={resalePrice}
+            <input name="price" type="number" disabled defaultValue={resalePrice}
               className="input w-full input-bordered input-info rounded-md"/>
 
             <input name="phone" type="text" placeholder="Phone Number"
