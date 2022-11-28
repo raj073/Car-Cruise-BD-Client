@@ -6,6 +6,7 @@ import useBuyer from "../Hooks/useBuyer";
 import useSeller from "../Hooks/useSeller";
 import Loading from "../Pages/Shared/Loading/Loading";
 import Navbar from "../Pages/Shared/Navbar/Navbar";
+import Footer from "../Pages/Shared/Footer/Footer";
 
 const DashboardLayout = () => {
 
@@ -25,7 +26,7 @@ const DashboardLayout = () => {
         <Loading></Loading>
       }
       
-      <div className="drawer drawer-mobile">
+      <div className="drawer drawer-mobile mb-10">
         <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
         
         <div className="drawer-content ml-5">
@@ -39,13 +40,17 @@ const DashboardLayout = () => {
             {
                 isAdmin && (
                     <>
-                    <li className="font-semibold ml-3 text-transparent bg-clip-text 
-                    bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <li className="font-semibold text-transparent bg-clip-text 
+                    bg-gradient-to-r from-cyan-500 to-blue-500 font-mono">
                     <Link to="/dashboard/allseller">All Sellers</Link>
                     </li>
-                    <li className="font-semibold ml-3 text-transparent bg-clip-text 
-                    bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <li className="font-semibold text-transparent bg-clip-text 
+                    bg-gradient-to-r from-cyan-500 to-blue-500 font-mono">
                     <Link to="/dashboard/allbuyer">All Buyers</Link>
+                    </li>
+                    <li className="font-semibold text-transparent bg-clip-text 
+                    bg-gradient-to-r from-cyan-500 to-blue-500 font-mono">
+                    <Link to="/dashboard/reporteditems">Reported Items</Link>
                     </li>
                     </>
                 )
@@ -54,14 +59,14 @@ const DashboardLayout = () => {
             {
                 isSeller && (
                     <>
-                    <li className="font-semibold ml-3 text-transparent bg-clip-text 
-                    bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <li className="font-semibold text-transparent bg-clip-text 
+                    bg-gradient-to-r from-cyan-500 to-blue-500 font-mono">
                     <Link to="/dashboard/addProduct">
                         Add A Product
                     </Link>
                     </li>
-                    <li className="font-semibold ml-3 text-transparent bg-clip-text 
-                    bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <li className="font-semibold text-transparent bg-clip-text 
+                    bg-gradient-to-r from-cyan-500 to-blue-500 font-mono">
                     <Link to="/dashboard/myproducts">
                         My Products
                     </Link>
@@ -73,10 +78,13 @@ const DashboardLayout = () => {
             {
                 isBuyer && (
                     <>
-                    <Link to="/dashboard/myorders" className="font-semibold ml-3 text-transparent bg-clip-text 
-                    bg-gradient-to-r from-cyan-500 to-blue-500">
+                    <li className="font-semibold text-transparent 
+                    bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 font-mono">
+                    <Link to="/dashboard/myorders">
                         My Orders
                     </Link>
+                    </li>
+                    
                     </>
                 )
             }
@@ -84,6 +92,9 @@ const DashboardLayout = () => {
           </ul>
         </div>
       </div>
+
+      <Footer></Footer>
+      
     </div>
   );
 };

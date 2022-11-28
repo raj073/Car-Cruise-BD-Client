@@ -16,6 +16,9 @@ import SellerRoute from "../SellerRoute/SellerRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AllSeller from "../../Pages/Dashboard/AllSeller/AllSeller";
 import AllBuyer from "../../Pages/Dashboard/AllBuyer/AllBuyer";
+import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 
 
 const router = createBrowserRouter([
@@ -46,6 +49,7 @@ const router = createBrowserRouter([
                 loader:({params}) => fetch(`http://localhost:5000/category/${params.id}`)
                 
             }
+
         ]
     },
     {
@@ -66,6 +70,10 @@ const router = createBrowserRouter([
                 element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>
             },
             {
+                path:'/dashboard/reporteditems',
+                element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
+            },
+            {
                 path: '/dashboard/addProduct',
                 element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
                 
@@ -77,8 +85,13 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myorders',
-                element: <MyOrders></MyOrders>
+                element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
                 
+            },
+            {
+                path:'/dashboard/payment/:id',
+                element: <BuyerRoute><Payment></Payment></BuyerRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/orders/${params.id}`)
             }
         ]
     }

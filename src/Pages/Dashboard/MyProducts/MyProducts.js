@@ -8,6 +8,7 @@ import Loading from "../../Shared/Loading/Loading";
 const MyProducts = () => {
   const { user, loading } = useContext(AuthContext);
   const [deletingProduct, setDeletingProduct] = useState(null);
+  const [isDisabled, setDisabled] = useState(false);
 
   const closeModal = () => {
     setDeletingProduct(null);
@@ -35,10 +36,31 @@ const MyProducts = () => {
     .then(data => {
         if(data.deletedCount > 0){
             refetch();
-            toast.success(`Product ${product.productName} Deleted Successfully`)
+            toast.success(`Product ${product.productName} Deleted Successfully`);
+            setDisabled(true);
         }
     })
 }
+
+
+
+const handleMakeAdvertise = (id) => {
+  fetch(`http://localhost:5000/product/${id}`, {
+      method: 'PUT', 
+      // headers: {
+      //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+      // }
+  })
+  .then(res => res.json())
+  .then(data => {
+      if(data.modifiedCount > 0){
+          toast.success('Make Advertise successful.');
+          refetch();
+      }
+  })
+}
+
+
 
   if (isLoading || loading) {
     return <Loading></Loading>;
@@ -80,7 +102,8 @@ const MyProducts = () => {
                 <td>
                 <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">
                   Delete</label> &nbsp;&nbsp;
-                <label className="btn btn-outline btn-xs btn-warning">Make Advertise</label>
+                <label onClick={() => handleMakeAdvertise(product._id)} disabled={isDisabled} className="btn btn-outline btn-xs btn-warning">
+                  Make Advertise</label>
                 </td>
               </tr>
             ))}

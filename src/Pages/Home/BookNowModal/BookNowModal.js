@@ -5,8 +5,9 @@ import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const BookNowModal = ({product, setProduct}) => {
 
+    console.log(product);
     const {user} = useContext(AuthContext);
-    const {_id, productName, resalePrice} = product;
+    const {_id, productName, resalePrice, image} = product;
 
     const handleBookNow = (event) =>{
 
@@ -21,8 +22,10 @@ const BookNowModal = ({product, setProduct}) => {
       const location = form.location.value;
 
       const bookings = {
-        name, email, productName, price, phone, location, productId:_id 
+        name, email, productName, price, phone, location, productId:_id, image:image, verified: ""
       }
+
+      console.log(bookings);
 
       fetch('http://localhost:5000/bookings', {
         method: 'POST',

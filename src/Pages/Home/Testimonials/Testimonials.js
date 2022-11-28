@@ -37,7 +37,7 @@ const Testimonials = () => {
   return (
     <div className="mt-16">
       <div className="text-center mb-5">
-        <h3 className="text-6xl font-semibold text-primary mb-2">
+        <h3 className="text-6xl font-semibold text-primary mb-2 font-mono">
         Customers Testimonial
         </h3>
         <h2 className="text-2xl">

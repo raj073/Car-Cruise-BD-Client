@@ -48,7 +48,7 @@ const AllSeller = () => {
 
     return (
 
-        <div>
+      <div>
       <h1 className="text-center text-4xl font-semibold mt-5 font-serif text-transparent bg-clip-text 
             bg-gradient-to-r from-sky-500 to-indigo-500">No of Seller: {sellers?.length}</h1>
       <div className="divider"></div>
@@ -78,7 +78,8 @@ const AllSeller = () => {
                 <td>{seller.email}</td>
                 <td>
                 <label onClick={() => setDeletingSeller(seller)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">
-                  Delete</label> 
+                  Delete</label> &nbsp;&nbsp;
+                <label className="btn btn-outline btn-xs btn-primary">Make Verified</label>
                 </td>
               </tr>
             ))}
