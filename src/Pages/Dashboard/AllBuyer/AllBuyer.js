@@ -18,7 +18,7 @@ const AllBuyer = () => {
         queryKey: ["buyers"],
         queryFn: async () => {
           const res = await fetch(
-            `http://localhost:5000/users/allbuyer`
+            `https://car-cruise-bd.vercel.app/users/allbuyer`
           );
           const data = await res.json();
           return data;
@@ -27,7 +27,7 @@ const AllBuyer = () => {
 
 
       const handleDeleteBuyer = (buyer) => {
-        fetch(`http://localhost:5000/users/${buyer._id}`, {
+        fetch(`https://car-cruise-bd.vercel.app/users/${buyer._id}`, {
             method: 'DELETE', 
         })
         .then(res => res.json())

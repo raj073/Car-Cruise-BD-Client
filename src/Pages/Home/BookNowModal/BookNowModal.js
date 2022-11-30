@@ -27,7 +27,7 @@ const BookNowModal = ({product, setProduct}) => {
 
       console.log(bookings);
 
-      fetch('http://localhost:5000/bookings', {
+      fetch('https://car-cruise-bd.vercel.app/bookings', {
         method: 'POST',
         headers:{
           'content-type' : 'application/json'

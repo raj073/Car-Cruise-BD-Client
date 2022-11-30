@@ -27,7 +27,7 @@ const CarProduct = ({ carProduct, setProduct }) => {
   const postingDate = format(Date.parse(postingTime), "PP");
   
   const handleWishlist = () =>{
-    fetch(`http://localhost:5000/wishlists?id=${_id}&email=${user.email}`, {
+    fetch(`https://car-cruise-bd.vercel.app/wishlists?id=${_id}&email=${user.email}`, {
       method: 'PUT'
   })
   .then(res => res.json())

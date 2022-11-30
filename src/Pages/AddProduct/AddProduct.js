@@ -28,7 +28,7 @@ const AddProduct = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
-        const res = await fetch('http://localhost:5000/addProductCategories');
+        const res = await fetch('https://car-cruise-bd.vercel.app/addProductCategories');
         const data = await res.json();
         return data;
     }
@@ -76,7 +76,7 @@ getCategoryObject();
       console.log(product);
 
               // Save doctor information to the database
-              fetch('http://localhost:5000/addProducts',{
+              fetch('https://car-cruise-bd.vercel.app/addProducts',{
                   method: 'POST',
                   headers:{
                       'content-type': 'application/json',

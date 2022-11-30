@@ -22,7 +22,7 @@ const WishlistCheckoutForm = ({booking}) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/wishlist-create-payment-intent", {
+        fetch("https://car-cruise-bd.vercel.app/wishlist-create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const WishlistCheckoutForm = ({booking}) => {
                 bookingId: _id
             }
             console.log(payment);
-            fetch('http://localhost:5000/wishlist-payments', {
+            fetch('https://car-cruise-bd.vercel.app/wishlist-payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

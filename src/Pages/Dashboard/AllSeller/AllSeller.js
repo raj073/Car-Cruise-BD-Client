@@ -21,7 +21,7 @@ const AllSeller = () => {
         queryKey: ["sellers"],
         queryFn: async () => {
           const res = await fetch(
-            `http://localhost:5000/users/allseller`
+            `https://car-cruise-bd.vercel.app/users/allseller`
           );
           const data = await res.json();
           return data;
@@ -29,7 +29,7 @@ const AllSeller = () => {
       });
 
       const handleDeleteSeller = (seller) => {
-        fetch(`http://localhost:5000/users/${seller._id}`, {
+        fetch(`https://car-cruise-bd.vercel.app/users/${seller._id}`, {
             method: 'DELETE', 
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -46,7 +46,7 @@ const AllSeller = () => {
 
     const handleVerifySeller = (_id, sellerName, sellerEmail) => {
 
-      fetch(`http://localhost:5000/seller/verify?id=${_id}&email=${sellerEmail}`, {
+      fetch(`https://car-cruise-bd.vercel.app/seller/verify?id=${_id}&email=${sellerEmail}`, {
         method: 'PUT',
         headers: {
             // authorization: `bearer ${localStorage.getItem('accessToken')}`

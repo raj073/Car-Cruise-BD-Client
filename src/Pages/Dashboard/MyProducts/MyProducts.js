@@ -17,7 +17,7 @@ const MyProducts = () => {
     queryKey: ["myProducts"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/products?email=${user?.email}`
+        `https://car-cruise-bd.vercel.app/products?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -25,7 +25,7 @@ const MyProducts = () => {
   });
 
   const handleDeleteProduct = (product) => {
-    fetch(`http://localhost:5000/products/${product._id}`, {
+    fetch(`https://car-cruise-bd.vercel.app/products/${product._id}`, {
         method: 'DELETE', 
         // headers: {
         //     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -41,7 +41,7 @@ const MyProducts = () => {
 }
 
 const handleMakeAdvertise = (id) => {
-  fetch(`http://localhost:5000/product/${id}`, {
+  fetch(`https://car-cruise-bd.vercel.app/product/${id}`, {
       method: 'PUT'
   })
   .then(res => res.json())

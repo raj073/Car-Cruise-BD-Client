@@ -49,7 +49,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><CarProducts></CarProducts></PrivateRoute> ,
-                loader:({params}) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader:({params}) => fetch(`https://car-cruise-bd.vercel.app/category/${params.id}`)
                 
             }
 
@@ -99,13 +99,13 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/wishlistpayment/:id',
                 element: <BuyerRoute><WishlistPayment></WishlistPayment></BuyerRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/wishlist/${params.id}`)
+                loader: ({params}) => fetch(`https://car-cruise-bd.vercel.app/wishlist/${params.id}`)
                 
             },
             {
                 path:'/dashboard/payment/:id',
                 element: <BuyerRoute><Payment></Payment></BuyerRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/orders/${params.id}`)
+                loader: ({params}) => fetch(`https://car-cruise-bd.vercel.app/orders/${params.id}`)
             }
         ]
     }

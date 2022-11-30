@@ -14,3 +14,7 @@ Technologies
 3. This is a single page application using react, tailwind, daisyUi, html, React Hook form
 4. For server side we have used express js which have been deployed in vercel
 5. All the site’s part has been responsive
+
+Credentials
+Admin Email: rajoni@gmail.com
+Admin Password: 123456
