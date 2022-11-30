@@ -2,6 +2,7 @@ import React from "react";
 
 const Advertise = ({ advertise }) => {
   const { productName, categoryName, resalePrice, description, image, salesStatus } = advertise;
+  console.log(advertise);
 
   return (
     <div className="card w-96 bg-base-100 shadow-xl rounded-none">

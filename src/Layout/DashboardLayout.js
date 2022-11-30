@@ -84,6 +84,12 @@ const DashboardLayout = () => {
                         My Orders
                     </Link>
                     </li>
+                    <li className="font-semibold text-transparent 
+                    bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 font-mono">
+                    <Link to="/dashboard/mywishlist">
+                        My Wishlist
+                    </Link>
+                    </li>
                     
                     </>
                 )

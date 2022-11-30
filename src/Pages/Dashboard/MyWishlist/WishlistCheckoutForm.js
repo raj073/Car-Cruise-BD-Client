@@ -1,30 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React,{ useEffect, useState, useContext } from 'react';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 import toast from "react-hot-toast";
 
-const CheckoutForm = ({ booking }) => {
+
+const WishlistCheckoutForm = ({booking}) => { 
+    
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState("");
 
+    const {user} = useContext(AuthContext);
+
     const stripe = useStripe();
     const elements = useElements();
-    const { price, email, _id, name, productName } = booking;
+
+    const { resalePrice, wishlistEmail, _id, productName } = booking;
+    console.log(booking);
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("http://localhost:5000/wishlist-create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ price }),
+            body: JSON.stringify({ resalePrice }),
         })
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
-    }, [price]);
+    }, [resalePrice]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -58,8 +65,8 @@ const CheckoutForm = ({ booking }) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: name,
-                        email: email
+                        name: user?.displayName,
+                        email: user?.email
                     },
                 },
             },
@@ -74,12 +81,13 @@ const CheckoutForm = ({ booking }) => {
             
             // store payment info in the database
             const payment = {
-                price,
+                resalePrice,
                 transactionId: paymentIntent.id,
-                email,
+                wishlistEmail,
                 bookingId: _id
             }
-            fetch('http://localhost:5000/payments', {
+            console.log(payment);
+            fetch('http://localhost:5000/wishlist-payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -101,8 +109,10 @@ const CheckoutForm = ({ booking }) => {
         setProcessing(false);
     }
 
-  return (
-    <>
+
+    return (
+
+        <>
             <form onSubmit={handleSubmit}>
                 <CardElement
                     options={{
@@ -136,7 +146,9 @@ const CheckoutForm = ({ booking }) => {
                 </div>
             }
         </>
-  );
+
+
+    );
 };
 
-export default CheckoutForm;
+export default WishlistCheckoutForm;

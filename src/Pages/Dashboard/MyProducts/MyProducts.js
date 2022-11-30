@@ -8,7 +8,6 @@ import Loading from "../../Shared/Loading/Loading";
 const MyProducts = () => {
   const { user, loading } = useContext(AuthContext);
   const [deletingProduct, setDeletingProduct] = useState(null);
-  const [disable, setDisable] = useState(false);
 
   const closeModal = () => {
     setDeletingProduct(null);
@@ -43,10 +42,7 @@ const MyProducts = () => {
 
 const handleMakeAdvertise = (id) => {
   fetch(`http://localhost:5000/product/${id}`, {
-      method: 'PUT', 
-      // headers: {
-      //     authorization: `bearer ${localStorage.getItem('accessToken')}`
-      // }
+      method: 'PUT'
   })
   .then(res => res.json())
   .then(data => {
@@ -55,7 +51,7 @@ const handleMakeAdvertise = (id) => {
           refetch();
       }
   })
-  setDisable(true);
+
 }
 
   if (isLoading || loading) {
@@ -98,7 +94,7 @@ const handleMakeAdvertise = (id) => {
                 <td>
                 <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">
                   Delete</label> &nbsp;&nbsp;
-                <button disabled={disable} onClick={() => handleMakeAdvertise(product._id)} 
+                <button onClick={() => handleMakeAdvertise(product._id)} 
                 className="btn btn-outline btn-xs btn-warning">
                   Make Advertise</button>
                 </td>

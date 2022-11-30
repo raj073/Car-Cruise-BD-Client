@@ -19,6 +19,9 @@ import AllBuyer from "../../Pages/Dashboard/AllBuyer/AllBuyer";
 import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import WishlistPayment from "../../Pages/Dashboard/MyWishlist/WishlistPayment";
 
 
 const router = createBrowserRouter([
@@ -57,10 +60,10 @@ const router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement: <DisplayError></DisplayError>,
         children: [
-            // {
-            //     path: '/dashboard',
-            //     element: <MyBookings></MyBookings>
-            // },
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
             {
                 path:'/dashboard/allseller',
                 element: <AdminRoute><AllSeller></AllSeller></AdminRoute>
@@ -86,6 +89,17 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myorders',
                 element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+                
+            },
+            {
+                path: '/dashboard/mywishlist',
+                element: <BuyerRoute><MyWishlist></MyWishlist></BuyerRoute>
+                
+            },
+            {
+                path: '/dashboard/wishlistpayment/:id',
+                element: <BuyerRoute><WishlistPayment></WishlistPayment></BuyerRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/wishlist/${params.id}`)
                 
             },
             {
