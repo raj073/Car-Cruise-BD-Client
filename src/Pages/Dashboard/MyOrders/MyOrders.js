@@ -66,7 +66,7 @@ const MyOrders = () => {
                   )}
 
                   {order.price && order.paid && (
-                    <span className="text-green-500">Paid</span>
+                    <button disabled className="text-green-800 font-semibold">Paid</button>
                   )}
                   
                 </td>

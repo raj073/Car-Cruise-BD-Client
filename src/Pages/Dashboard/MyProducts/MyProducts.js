@@ -72,7 +72,6 @@ const handleMakeAdvertise = (id) => {
               <th>Name</th>
               <th>Category</th>
               <th>Resale Price</th>
-              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -90,7 +89,6 @@ const handleMakeAdvertise = (id) => {
                 <td>{product.productName}</td>
                 <td>{product.categoryName}</td>
                 <td>{product.resalePrice}</td>
-                <td>{product.salesStatus}</td>
                 <td>
                 <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">
                   Delete</label> &nbsp;&nbsp;

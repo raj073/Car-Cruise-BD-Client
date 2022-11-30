@@ -7,7 +7,6 @@ import { FaCheckSquare } from "react-icons/fa";
 
 const CarProduct = ({ carProduct, setProduct }) => {
 
-  console.log(carProduct);
   const {
     productName,
     location,
@@ -75,8 +74,8 @@ const CarProduct = ({ carProduct, setProduct }) => {
           <p>Seller: {sellerName}</p>
           <div>
             {
-            verification === 'verified' && <p className='text-blue-500 text-2xl'> 
-            <FaCheckSquare className="mr-3 text-blue-700"></FaCheckSquare></p>
+            verification === 'verified' && <p className='text-blue-500 text-xl' title='Verified Seller'> 
+            <FaCheckSquare className="mr-3 text-blue-700"></FaCheckSquare>Verified Seller</p>
             }
           </div>
         </div>

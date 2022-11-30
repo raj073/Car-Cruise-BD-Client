@@ -20,7 +20,7 @@ const Advertise = ({ advertise }) => {
         <p>{description}</p>
         <div className="card-actions justify-end">
           <div className="badge badge-outline badge-secondary">{categoryName}</div>
-          <div className="badge badge-outline badge-warning">{salesStatus}</div>
+          <div className="badge badge-outline badge-warning font-semibold">$ {resalePrice}</div>
         </div>
       </div>
     </div>}
