@@ -1,11 +1,14 @@
 import React from "react";
 
 const Advertise = ({ advertise }) => {
-  const { productName, categoryName, resalePrice, description, image, salesStatus } = advertise;
-  console.log(advertise);
+  const { productName, categoryName, resalePrice, description, image, salesStatus, paid } = advertise;
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl rounded-none">
+    <div>
+
+      {
+      !paid &&
+        <div className="card w-96 bg-base-100 shadow-xl rounded-none">
       <figure>
         <img src={image} alt="Shoes" />
       </figure>
@@ -20,6 +23,8 @@ const Advertise = ({ advertise }) => {
           <div className="badge badge-outline badge-warning">{salesStatus}</div>
         </div>
       </div>
+    </div>}
+
     </div>
   );
 };

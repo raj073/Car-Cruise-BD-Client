@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 
-const useSeller = (email) => {
+const useSeller = (email, verified = false) => {
 
     const [isSeller, setIsSeller] = useState(false);
+    const [isVerified, setVerified] = useState(false);
     const [isSellerLoading, setIsSellerLoading] = useState(true);
 
     useEffect(() => {
@@ -11,12 +12,13 @@ const useSeller = (email) => {
                 .then(res => res.json())
                 .then(data => {
                     setIsSeller(data.isSeller);
+                    setVerified(data.isVerified);
                     setIsSellerLoading(false);
                 })
         }
     }, [email])
 
-    return [isSeller, isSellerLoading]
+    return [isSeller, isSellerLoading, isVerified]
 };
 
 export default useSeller;

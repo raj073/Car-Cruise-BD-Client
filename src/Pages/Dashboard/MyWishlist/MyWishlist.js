@@ -19,7 +19,6 @@ const MyWishlist = () => {
       },
     });
 
-    //console.log(wishlist[0].paid);
   
     if (loading || isLoading) {
       <Loading></Loading>;
@@ -32,7 +31,7 @@ const MyWishlist = () => {
         className="text-center text-4xl font-semibold mt-5 font-mono text-transparent bg-clip-text 
             bg-gradient-to-r from-sky-500 to-indigo-500"
       >
-        Total No. of Orders: {wishlist?.length}
+        Wishlist Product
       </h1>
       <div className="divider"></div>
 

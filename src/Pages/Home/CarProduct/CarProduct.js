@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import useBuyer from "../../../Hooks/useBuyer";
+import { FaCheckSquare } from "react-icons/fa";
 
 const CarProduct = ({ carProduct, setProduct }) => {
 
@@ -17,7 +18,8 @@ const CarProduct = ({ carProduct, setProduct }) => {
     sellerName,
     image,
     _id,
-    paid
+    paid,
+    verification
   } = carProduct;
 
   const { user, loading } = useContext(AuthContext);
@@ -64,15 +66,22 @@ const CarProduct = ({ carProduct, setProduct }) => {
           {productName}
         </h2>
         <p className="font-serif">Location: {location}</p>
-        <p className="font-serif">Original Price: {originalPrice}</p>
-        <p className="font-serif">Resale Price: {resalePrice}</p>
+        <p className="font-serif">Original Price: $ {originalPrice}</p>
+        <p className="font-serif">Resale Price: $ {resalePrice}</p>
         <p className="font-serif">Years of Use: {yearsOfUse}</p>
         <p className="font-serif">Posted Time: {postingDate}</p>
-        <p className="font-serif">Paid: {paid}</p>
         <hr />
-        <p className="italic font-serif">Seller Name: {sellerName}</p>
+        <div className="italic font-serif flex">
+          <p>Seller: {sellerName}</p>
+          <div>
+            {
+            verification === 'verified' && <p className='text-blue-500 text-2xl'> 
+            <FaCheckSquare className="mr-3 text-blue-700"></FaCheckSquare></p>
+            }
+          </div>
+        </div>
 
-        <div className="card-actions justify-end">
+        <div className="card-actions justify-end mt-5">
           <label
             htmlFor="book-now-modal"
             onClick={() => setProduct(carProduct)}

@@ -4,11 +4,14 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
+import useSeller from "../../../Hooks/useSeller";
 
 const AllSeller = () => {
 
     const { user, loading } = useContext(AuthContext);
     const [deletingSeller, setDeletingSeller] = useState(null);
+    const [verfiedClick, setVerfiedClick] = useState(false);
+    const [isSeller, isSellerLoading] = useSeller(user?.email, verfiedClick);
 
     const closeModal = () => {
         setDeletingSeller(null);
@@ -39,6 +42,25 @@ const AllSeller = () => {
                 toast.success(`User Deleted Successfully`)
             }
         })
+    }
+
+    const handleVerifySeller = (_id, sellerName, sellerEmail) => {
+
+      fetch(`http://localhost:5000/seller/verify?id=${_id}&email=${sellerEmail}`, {
+        method: 'PUT',
+        headers: {
+            // authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.modifiedCount > 0) {
+                setVerfiedClick(true);
+                toast.success(`${sellerName} verified successfully!!`)
+                refetch();
+            }
+        })
+
     }
 
 
@@ -79,7 +101,8 @@ const AllSeller = () => {
                 <td>
                 <label onClick={() => setDeletingSeller(seller)} htmlFor="confirmation-modal" className="btn btn-xs btn-error">
                   Delete</label> &nbsp;&nbsp;
-                <label className="btn btn-outline btn-xs btn-primary">Make Verified</label>
+                <label onClick={() => handleVerifySeller(seller._id, seller.name, seller.email)}
+                className="btn btn-outline btn-xs btn-primary" disabled={seller.verification === 'verified'}>Make Verified</label>
                 </td>
               </tr>
             ))}

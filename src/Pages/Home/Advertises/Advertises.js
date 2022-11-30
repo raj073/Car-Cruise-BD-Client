@@ -12,7 +12,6 @@ const Advertises = () => {
       return data;
     },
   });
-  //console.log(advertises[0].productName);
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -20,7 +19,7 @@ const Advertises = () => {
 
   return (
     <div>
-      { advertises[0]?.advertisement &&
+      { advertises[0]?.advertisement && !advertises[0]?.paid &&
         <div className="text-center mb-5 mt-12">
         <h3
           className="text-5xl font-semibold text-transparent bg-clip-text 
